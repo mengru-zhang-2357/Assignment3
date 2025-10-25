@@ -32,7 +32,7 @@ head(text_msg_long)
 vis_1_caption = "n = 25 for each group. The number of text messages a person typed were captured at two time points: baseline, and six month later."
 text_msg_long %>% ggplot (aes(x = Timepoint, y = n_Msg, fill = Timepoint)) + 
   geom_boxplot(width = 0.4, alpha = 0.8) + 
-  facet_grid(Group ~ ., switch = "y", scales = "free_y") +
+  facet_grid(Group ~ ., switch = "y") +
   scale_fill_brewer("Paired") +
   labs(x = "Time Point", y = "Number of Messages",
        title = "Number of Text Messages by Group and Timepoint",
@@ -42,3 +42,6 @@ text_msg_long %>% ggplot (aes(x = Timepoint, y = n_Msg, fill = Timepoint)) +
         plot.title = element_text(face = "bold", size = 12, hjust = 0.5),
         plot.caption.position = "plot",
         plot.caption = element_text(hjust = 0))
+
+# The box plot shows that the number of text messages sent decreased from the Baseline observation to that six months later. The decrease appears more significant in Group 1 than Group 2, which we will show later in the summary statistics section.
+# The number of text messages six months later for Group 1 contains a fair amount of outliers on the downside, with the minimum being 9 messages.
