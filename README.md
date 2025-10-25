@@ -18,6 +18,7 @@ install.packages(c("tidyverse", "paletteer", "pastecs"))
 library(tidyverse)   # for data wrangling and ggplot2 visualization
 library(paletteer)   # for diverse color palettes
 library(pastecs)     # for descriptive statistics via stat.desc()
+```
 
 ## Analysis Overview
 The analysis was conducted in three main parts:
