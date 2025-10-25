@@ -1,5 +1,5 @@
 # Assignment 3: Collaborative GitHub Project – Text Message Analysis
-In this project, team members worked together to analyze text message data collected at two time points (Baseline and Six Months) across two participant groups. This project practices collaborative data analysis using GitHub version control through branching, committing, and pull requests.
+In this project, team members worked together using R and Github to analyze text message data collected at two time points (Baseline and Six Months) across two participant groups. 
 
 ## Repository Contents
 - `TextMessages.csv` — Sample dataset for analysis  
@@ -14,7 +14,6 @@ The dataset `TextMessages.csv` contains the number of text messages sent by each
 To reproduce the analysis, install and load the following R packages:
 
 ```r
-install.packages(c("tidyverse", "paletteer", "pastecs"))
 library(tidyverse)   # for data wrangling and ggplot2 visualization
 library(paletteer)   # for diverse color palettes
 library(pastecs)     # for descriptive statistics via stat.desc()
@@ -28,12 +27,12 @@ The analysis was conducted in three main parts:
    
 ## Collaboration and Roles
 This project was completed collaboratively using GitHub branching and pull requests.
-| Team Member | Role | Branch Name | Key Contributions |
-|--------------|------|--------------|-------------------|
-| **Mengru Zhang** | Visualization #1 (Boxplot), Documentation, Final report assembly | `Vis_1` | Created faceted boxplots, wrote README, merged final report |
+| Team Member | Role | Branch&nbsp;Name | Key Contributions |
+|------------------|------|--------------|-------------------|
+| **Mengru&nbsp;Zhang** | Visualization #1 (Boxplot), Documentation, Final report assembly | `Vis_1` | Created faceted boxplots, wrote README, merged final report |
 | **Chris Xu** | Visualization #2 (Bar chart), Summary Statistics | [TBU] | Created faceted bar charts and descriptive summary tables |
 
-### Collaboration Workflow
+## Collaboration Workflow
 - Each member created a separate branch for their assigned task in R
 - Members committed changes with descriptive messages using R
 - Changes were pushed to GitHub and reviewed via pull requests
