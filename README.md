@@ -40,8 +40,9 @@ This project was completed collaboratively using GitHub branching and pull reque
 
 ## Reproducibility
 To reproduce this analysis:
-1. Clone the repository:  
-   `git clone https://github.com/mengru-zhang-2357/Assignment3/`
-2. Open the R Project in RStudio.
-3. Run the `Group7_Assignment3_v1.R` script in RStudio to generate the boxplots, bar charts, and summary statistics.
-4. Knit or render the final report (`Final_Report.Rmd`) to PDF.
+1. Open RStudio, go to File → New Project → Version Control → Git
+2. Paste the repo URL:  
+   `https://github.com/mengru-zhang-2357/Assignment3.git`
+3. Click "Create Project".
+4. Run the `Group7_Assignment3_v1.R` script in RStudio to generate the boxplots, bar charts, and summary statistics.
+5. Knit or render the final report (`Final_Report.Rmd`) to PDF.
