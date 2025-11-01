@@ -1,5 +1,6 @@
-# Setting the working directory - Please change to your directory as you see fit
-setwd("~/Personal/Brown/BHDS2010/Assignment 3/Assignment3")
+# Setting the working directory
+# Commented out because we each have different working directories
+# setwd("~/Personal/Brown/BHDS2010/Assignment 3/Assignment3")
 
 # Import libraries used in this analysis
 library(tidyverse) # To use ggplot, filter, mutate, etc. tidyverse functions
@@ -22,18 +23,20 @@ text_msg_long <- text_msg %>%
 # Print out the fist few rows of text_msg_long to verify the pivot is corrected processed
 head(text_msg_long)
 
-# Compute summary statistics (mean and standard error)
+# Summary statistics: We compute the summary statistics of the data, including mean, median, count, standard deviation, standard error, minimum, and maximum.
 summary_stats <- text_msg_long %>%
   group_by(Group, Timepoint) %>%
   summarise(
     n = n(),
     mean = mean(n_Msg, na.rm = TRUE),
+    median = median(n_Msg, na.rm = TRUE),
     sd = sd(n_Msg, na.rm = TRUE),
     se = sd / sqrt(n),
     min = min(n_Msg, na.rm = TRUE),
     max = max(n_Msg, na.rm = TRUE)
   )
 
+# Next we print out the results
 print(summary_stats)
 
 # Visualization 1: We first create boxplots of text messages stratified by Group and Time
