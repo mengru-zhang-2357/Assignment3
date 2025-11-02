@@ -23,14 +23,19 @@ library(pastecs)     # for descriptive statistics via stat.desc()
 The analysis was conducted in three main parts:
 1. **Visualization #1** – Box plot of text messages by Group and Timepoint.  
 2. **Visualization #2** – Bar chart of text messages by Group and Timepoint.  
-3. **Summary Statistics** – Mean, median, count, standard deviation, and quartiles of text messages by Group and Timepoint.
+3. **Summary Statistics** – Mean, median, count, standard deviation, and minimum / maximum of text messages by Group and Timepoint.
+
+## Results Summary
+- Group 1 showed a significant reduction in text messages from Baseline to Six Months (mean 64.8 to 53.0, non-overlapping 95% CI).  
+- Group 2 showed a smaller, non-significant decline (65.6 to 61.8, overlapping CI).  
+These results suggest Group 1 reduced messaging frequency more significantly over time.
    
 ## Collaboration and Roles
 This project was completed collaboratively using GitHub branching and pull requests.
 | Team Member | Role | Branch&nbsp;Name | Key Contributions |
 |------------------|------|--------------|-------------------|
 | **Mengru&nbsp;Zhang** | Visualization #1 (Boxplot), Documentation, Final report assembly | `Vis_1` | Created faceted boxplots, wrote README, merged final report |
-| **Chris Xu** | Visualization #2 (Bar chart), Summary Statistics | [TBU] | Created faceted bar charts and descriptive summary tables |
+| **Chris Xu** | Visualization #2 (Bar chart), Summary Statistics | `Vis_2` | Created faceted bar charts and descriptive summary tables |
 
 ## Collaboration Workflow
 - Each member created a separate branch for their assigned task in R
@@ -44,5 +49,5 @@ To reproduce this analysis:
 2. Paste the repo URL:  
    `https://github.com/mengru-zhang-2357/Assignment3.git`
 3. Click "Create Project".
-4. Run the `Group7_Assignment3_v1.R` script in RStudio to generate the boxplots, bar charts, and summary statistics.
-5. Knit or render the final report (`Final_Report.Rmd`) to PDF.
+4. Run the `Assignment3.R` script in RStudio to generate the boxplots, bar charts, and summary statistics.
+5. Knit or render the final report (`Assignment3.Rmd`) to PDF.
