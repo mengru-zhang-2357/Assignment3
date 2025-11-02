@@ -44,8 +44,8 @@ summary_stats <- text_msg_long %>%
     n = n(),
     mean = mean(n_Msg, na.rm = TRUE),
     median = median(n_Msg, na.rm = TRUE),
-    sd = sd(n_Msg, na.rm = TRUE),
-    se = sd / sqrt(n),
+    stdev = sd(n_Msg, na.rm = TRUE),
+    se = stdev / sqrt(n),
     min = min(n_Msg, na.rm = TRUE),
     max = max(n_Msg, na.rm = TRUE)
   )
@@ -69,7 +69,8 @@ vis_1_caption = "n = 25 for each group. The number of text messages a person typ
 # Set title and caption location
 text_msg_long %>% ggplot (aes(x = Timepoint, y = n_Msg, fill = Timepoint)) +      
   geom_boxplot(width = 0.4, alpha = 0.8) +                   
-  facet_grid(. ~ Group, switch = "y") +                      
+  facet_grid(. ~ Group, switch = "y") +
+  coord_cartesian(ylim = c(0, 100)) +
   scale_fill_brewer("Paired") +                              
   labs(x = "Time Point", y = "Number of Messages",           
        title = "Box Plot of Text Messages by Time within Each Group",
@@ -97,7 +98,8 @@ ggplot(summary_stats, aes(x = Timepoint, y = mean, fill = Timepoint)) +
   geom_errorbar(aes(ymin = mean - 1.96*se, 
                     ymax = mean + 1.96*se),                  
                 width = 0.2, position = position_dodge(width = 0.9)) +                    
-  facet_wrap(~ Group) +                                      
+  facet_wrap(~ Group) +
+  coord_cartesian(ylim = c(0, 80)) +
   scale_fill_brewer("Paired") +  
   labs(                                                      
     title = "Comparison of Text Messages by Time within Each Group",
