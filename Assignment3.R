@@ -30,8 +30,8 @@ summary_stats <- text_msg_long %>%
     n = n(),
     mean = mean(n_Msg, na.rm = TRUE),
     median = median(n_Msg, na.rm = TRUE),
-    sd = sd(n_Msg, na.rm = TRUE),
-    se = sd / sqrt(n),
+    stdev = sd(n_Msg, na.rm = TRUE),
+    se = stdev / sqrt(n),
     min = min(n_Msg, na.rm = TRUE),
     max = max(n_Msg, na.rm = TRUE)
   )
@@ -44,16 +44,25 @@ print(summary_stats)
 # For Group 1,  the standard deviation increased to 16.3, while for Group 2, the standard deviation slightly decreased to 9.41. Group 1 sees more extreme values on the downside, with a minimum of 9 text messages. Both groups saw maximum number of text messages near 80.
 
 # Visualization 1: We first create box plots of text messages stratified by Group and Time
-vis_1_caption = "n = 25 for each group. The number of text messages a person typed were captured at two time points: baseline, and six months."   # Caption for chart to explain the data
-text_msg_long %>% ggplot (aes(x = Timepoint, y = n_Msg, fill = Timepoint)) +      # Start a blank canvas, clarify the data on two axes
-  geom_boxplot(width = 0.4, alpha = 0.8) +                                        # Box plot, set width and color opacity
-  facet_grid(. ~ Group, switch = "y") +                                           # Define faceted chart
-  scale_fill_brewer("Paired") +                                                   # Choose color palette
-  labs(x = "Time Point", y = "Number of Messages",                                # Add axis labels, title, and caption
+# Caption for chart to explain the data
+vis_1_caption = "n = 25 for each group. The number of text messages a person typed were captured at two time points: baseline, and six months."   
+# Start a blank canvas, clarify the data on two axes
+# Box plot, set width and color opacity
+# Define faceted chart
+# Choose color palette
+# Add axis labels, title, and caption
+# Choose theme
+# Set title and caption location
+text_msg_long %>% ggplot (aes(x = Timepoint, y = n_Msg, fill = Timepoint)) +      
+  geom_boxplot(width = 0.4, alpha = 0.8) +                   
+  facet_grid(. ~ Group, switch = "y") +
+  coord_cartesian(ylim = c(0, 100)) +
+  scale_fill_brewer("Paired") +                              
+  labs(x = "Time Point", y = "Number of Messages",           
        title = "Box Plot of Text Messages by Time within Each Group",
        caption = str_wrap(vis_1_caption, width = 100)) +
-  theme_classic() +                                                               # Choose theme
-  theme(legend.position = "none",                                                 # Set title and caption location
+  theme_classic() +                                          
+  theme(legend.position = "none",                            
         plot.title = element_text(face = "bold", size = 12, hjust = 0.5),
         plot.caption.position = "plot",
         plot.caption = element_text(hjust = 0))
@@ -62,14 +71,23 @@ text_msg_long %>% ggplot (aes(x = Timepoint, y = n_Msg, fill = Timepoint)) +    
 # The number of text messages six months later for Group 1 contains a fair amount of outliers on the downside, with the minimum being 9 messages.
 
 # Visualization 2: We then create bar charts of text messages stratified by Group and Time
-vis_2_caption = "n = 25 for each group. The number of text messages a person typed were captured at two time points: baseline, and six months. Error bars indicating 95% confidence interval."   # Caption for chart to explain the data
-ggplot(summary_stats, aes(x = Timepoint, y = mean, fill = Timepoint)) +           # Start a blank canvas, clarify the data on two axes
-  geom_bar(stat = "identity", position = "dodge") +                               # Define a bar chart, where the height of the bars equal the means
-  geom_errorbar(aes(ymin = mean - 1.96*se, ymax = mean + 1.96*se),                # Define error bars to be +-1.96 standard error, i.e. 95% CI
+# Caption for chart to explain the data
+vis_2_caption = "n = 25 for each group. The number of text messages a person typed were captured at two time points: baseline, and six months. Error bars indicating 95% confidence interval."  
+# Start a blank canvas, clarify the data on two axes
+# Define a bar chart, where the height of the bars represents the means
+# Define error bars to be +-1.96 standard error, i.e. 95% CI
+# Define faceted chart
+# Add axis labels, title, and caption
+# Set title and caption location
+ggplot(summary_stats, aes(x = Timepoint, y = mean, fill = Timepoint)) +           
+  geom_bar(stat = "identity", position = "dodge") +          
+  geom_errorbar(aes(ymin = mean - 1.96*se, 
+                    ymax = mean + 1.96*se),                  
                 width = 0.2, position = position_dodge(width = 0.9)) +                    
-  facet_wrap(~ Group) +                                                           # Define faceted chart
+  facet_wrap(~ Group) +
+  coord_cartesian(ylim = c(0, 80)) +
   scale_fill_brewer("Paired") +  
-  labs(                                                                           # Add axis labels, title, and caption
+  labs(                                                      
     title = "Comparison of Text Messages by Time within Each Group",
     x = "Time",
     y = "Average Text Messages (± 1.96SE)",
@@ -77,7 +95,7 @@ ggplot(summary_stats, aes(x = Timepoint, y = mean, fill = Timepoint)) +         
     caption = str_wrap(vis_2_caption, width = 100)
   ) +
   theme_classic() +
-  theme(                                                                          # Set title and caption location
+  theme(                                                     
     plot.title = element_text(hjust = 0.5),
     legend.position = "right",
     plot.caption.position = "plot",
