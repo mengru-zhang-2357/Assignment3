@@ -39,17 +39,21 @@ summary_stats <- text_msg_long %>%
 # Next we print out the results
 print(summary_stats)
 
-# Visualization 1: We first create boxplots of text messages stratified by Group and Time
-vis_1_caption = "n = 25 for each group. The number of text messages a person typed were captured at two time points: baseline, and six month later."
-text_msg_long %>% ggplot (aes(x = Timepoint, y = n_Msg, fill = Timepoint)) + 
-  geom_boxplot(width = 0.4, alpha = 0.8) + 
-  facet_grid(Group ~ ., switch = "y") +
-  scale_fill_brewer("Paired") +
-  labs(x = "Time Point", y = "Number of Messages",
-       title = "Number of Text Messages by Group and Timepoint",
+# There are 25 data points in each group at each timepoint.
+# Group 1 and Group 2 showed similar means and medians around 65, with standard deviation of 10.7-10.8. The minimum values of both groups are 46-47, and maximum are 85 and 89, respectively. Overall, the two groups display similar summary statistics at the Baseline timepoint. At the Six Months timepoint, the statistics are quite different. Group 1 has a mean of 53 and median of 58, while Group 2 has a mean of 61.8 and median of 62. 
+# For Group 1,  the standard deviation increased to 16.3, while for Group 2, the standard deviation slightly decreased to 9.41. Group 1 sees more extreme values on the downside, with a minimum of 9 text messages. Both groups saw maximum number of text messages near 80.
+
+# Visualization 1: We first create box plots of text messages stratified by Group and Time
+vis_1_caption = "n = 25 for each group. The number of text messages a person typed were captured at two time points: baseline, and six months."   # Caption for chart to explain the data
+text_msg_long %>% ggplot (aes(x = Timepoint, y = n_Msg, fill = Timepoint)) +      # Start a blank canvas, clarify the data on two axes
+  geom_boxplot(width = 0.4, alpha = 0.8) +                                        # Box plot, set width and color opacity
+  facet_grid(. ~ Group, switch = "y") +                                           # Define faceted chart
+  scale_fill_brewer("Paired") +                                                   # Choose color palette
+  labs(x = "Time Point", y = "Number of Messages",                                # Add axis labels, title, and caption
+       title = "Comparison of Text Messages by Time within Each Group",
        caption = str_wrap(vis_1_caption, width = 100)) +
-  theme_classic() +
-  theme(legend.position = "none",
+  theme_classic() +                                                               # Choose theme
+  theme(legend.position = "none",                                                 # Set title and caption location
         plot.title = element_text(face = "bold", size = 12, hjust = 0.5),
         plot.caption.position = "plot",
         plot.caption = element_text(hjust = 0))
@@ -57,23 +61,31 @@ text_msg_long %>% ggplot (aes(x = Timepoint, y = n_Msg, fill = Timepoint)) +
 # The box plot shows that the number of text messages sent decreased from the Baseline observation to that six months later. The decrease appears more significant in Group 1 than Group 2, which we will show later in the summary statistics section.
 # The number of text messages six months later for Group 1 contains a fair amount of outliers on the downside, with the minimum being 9 messages.
 
-# Create faceted bar chart
-ggplot(summary_stats, aes(x = Timepoint, y = mean, fill = Timepoint)) +
-  geom_bar(stat = "identity", position = "dodge") +
-  geom_errorbar(aes(ymin = mean - se, ymax = mean + se),
-                width = 0.2, position = position_dodge(width = 0.9)) +
-  facet_wrap(~ Group) +
-  labs(
+# Visualization 2: We then create bar charts of text messages stratified by Group and Time
+vis_2_caption = "n = 25 for each group. The number of text messages a person typed were captured at two time points: baseline, and six months. Error bars indicating 95% confidence interval."   # Caption for chart to explain the data
+ggplot(summary_stats, aes(x = Timepoint, y = mean, fill = Timepoint)) +           # Start a blank canvas, clarify the data on two axes
+  geom_bar(stat = "identity", position = "dodge") +                               # Define a bar chart, where the height of the bars equal the means
+  geom_errorbar(aes(ymin = mean - 1.96*se, ymax = mean + 1.96*se),                # Define error bars to be +-1.96 standard error, i.e. 95% CI
+                width = 0.2, position = position_dodge(width = 0.9)) +                    
+  facet_wrap(~ Group) +                                                           # Define faceted chart
+  scale_fill_brewer("Paired") +  
+  labs(                                                                           # Add axis labels, title, and caption
     title = "Comparison of Text Messages by Time within Each Group",
     x = "Time",
-    y = "Average Text Messages (± SE)",
-    fill = "Time Period"
+    y = "Average Text Messages (± 1.96SE)",
+    fill = "Time Period",
+    caption = str_wrap(vis_2_caption, width = 100)
   ) +
   theme_classic() +
-  theme(
+  theme(                                                                          # Set title and caption location
     plot.title = element_text(hjust = 0.5),
-    legend.position = "right"
+    legend.position = "right",
+    plot.caption.position = "plot",
+    plot.caption = element_text(hjust = 0)
   )
 
-# Result: Group 1: Showed a significant decrease in the average number of text messages sent, dropping from approximately 66 at Baseline to about 53 at the six-month mark. The error bars (which represent standard error) do not overlap, suggesting this change is statistically significant.
-# Group 2: Showed only a slight decrease in average text messages, from approximately 67 at Baseline to 62 at six months. The error bars for these two time points overlap, suggesting this small drop is likely not statistically significant.In summary, while both groups started with a similar average, Group 1 experienced a much larger and more statistically significant reduction in text messages after six months compared to Group 2.
+# Group 1 showed a significant decrease in the average number of text messages sent, dropping from approximately 65 at Baseline to about 53 at the six-month mark. The error bars (which represent 95% CI) do not overlap, suggesting this change is statistically significant.
+# Group 2 showed only a slight decrease in average text messages, from approximately 66 at Baseline to 62 at six months. The error bars for these two time points overlap, suggesting this small drop is likely not statistically significant.
+
+
+# In summary, while both groups started with a similar average, Group 1 experienced a much larger and more statistically significant reduction in text messages after six months compared to Group 2.
