@@ -50,7 +50,7 @@ text_msg_long %>% ggplot (aes(x = Timepoint, y = n_Msg, fill = Timepoint)) +    
   facet_grid(. ~ Group, switch = "y") +                                           # Define faceted chart
   scale_fill_brewer("Paired") +                                                   # Choose color palette
   labs(x = "Time Point", y = "Number of Messages",                                # Add axis labels, title, and caption
-       title = "Comparison of Text Messages by Time within Each Group",
+       title = "Box Plot of Text Messages by Time within Each Group",
        caption = str_wrap(vis_1_caption, width = 100)) +
   theme_classic() +                                                               # Choose theme
   theme(legend.position = "none",                                                 # Set title and caption location
