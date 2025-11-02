@@ -14,9 +14,7 @@ The dataset `TextMessages.csv` contains the number of text messages sent by each
 To reproduce the analysis, install and load the following R packages:
 
 ```r
-library(tidyverse)   # for data wrangling and ggplot2 visualization
-library(paletteer)   # for diverse color palettes
-library(pastecs)     # for descriptive statistics via stat.desc()
+library(tidyverse)   # for dplyr, stringr, and ggplot2 functions
 ```
 
 ## Analysis Overview
