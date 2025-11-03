@@ -12,7 +12,7 @@ In this project, team members worked together using R and Github to analyze text
 The dataset `TextMessages.csv` contains the number of text messages sent by each participant at two time points: Baseline and Six_Months. Participants are categorized into Group 1 and Group 2.
 
 ## Setup and Required Packages
-To reproduce the analysis, install and load the following R packages:
+To reproduce the analysis, install and load the following R package:
 
 ```r
 library(tidyverse)   # for dplyr, stringr, and ggplot2 functions
@@ -37,14 +37,14 @@ This project was completed collaboratively using GitHub branching and pull reque
 | **Chris Xu** | Visualization #2 (Bar chart), Summary Statistics | `Vis_2` | Created faceted bar charts and descriptive summary tables |
 
 ## Collaboration Workflow
-- Each member created a separate branch for their assigned task in R
-- Members committed changes with descriptive messages using R
-- Changes were pushed to GitHub and reviewed via pull requests
-- Members reviewed the final code and output together before the reproducible report was generated
+- Each member created a separate branch for their assigned task in R.
+- Members committed changes with descriptive messages using R.
+- Changes were pushed to GitHub and reviewed via pull requests.
+- Members reviewed the final code and output together before the reproducible report was generated.
 
 ## Reproducibility
 To reproduce this analysis:
-1. Open RStudio, go to File → New Project → Version Control → Git
+1. Open RStudio. Go to File → New Project → Version Control → Git
 2. Paste the repo URL:  
    `https://github.com/mengru-zhang-2357/Assignment3.git`
 3. Click "Create Project".
