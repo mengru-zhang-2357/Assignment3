@@ -2,10 +2,11 @@
 In this project, team members worked together using R and Github to analyze text message data collected at two time points (Baseline and Six Months) across two participant groups. 
 
 ## Repository Contents
-- `TextMessages.csv` — Sample dataset for analysis  
-- `Group7_Assignment3_v1.R` — Code for analysis including visualization and summary statistics
-- `README.md` — Documentation and collaboration details  
-- `Group7_Assignment3_Final_Report.pdf` — Combined visualizations and summary statistics report
+- `README.md` - Documentation and collaboration details 
+- `TextMessages.csv` - Sample dataset for analysis  
+- `Assignment3.R` - Code for analysis including visualization and summary statistics
+- `Assignment3.Rmd` - R Markdown file to generate reproducible report
+- `Group7_Assignment3_Final_Report.pdf` - Combined visualizations and summary statistics report
 
 ## Description of Data
 The dataset `TextMessages.csv` contains the number of text messages sent by each participant at two time points: Baseline and Six_Months. Participants are categorized into Group 1 and Group 2.
